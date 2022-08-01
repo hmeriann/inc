@@ -1,0 +1,60 @@
+version: '3.3'
+services:
+  mariadb_svc:  
+    build: ./requirements/mariadb/
+    container_name: mariadb
+    restart: unless-stopped
+    networks:
+      - docker-network
+    volumes:
+      - db_data:/var/lib/mysql/
+    env_file: .env
+    expose:
+      - 3306
+
+  nginx_svc:
+    build: ./requirements/nginx/
+    container_name: nginx
+    depends_on:
+      - wordpress_svc
+    expose:
+      - 443
+    ports:
+      - "443:443"
+    restart: unless-stopped
+    networks:
+      - docker-network
+    volumes:
+      - './nginx/conf:/etc/nginx/sites-available/nginx.conf'
+      - wp_data:/var/www/
+
+  wordpress_svc:
+    build: ./requirements/wordpress/
+    container_name: wordpress
+    depends_on:
+      - mariadb_svc
+    restart: unless-stopped
+    networks:
+      - docker-network
+    volumes:
+      - wp_data:/var/www/
+    env_file: .env
+    expose:
+      - 9000
+
+networks:
+  docker-network:
+
+volumes:
+  db_data:
+    driver: local
+    driver_opts:
+      type: "none"
+      o: "bind"
+      device: "/home/${USER}/data/db"
+  wp_data:
+    driver: local
+    driver_opts:
+      type: "none"
+      o: "bind"
+      device: "/home/${USER}/data/wp"
