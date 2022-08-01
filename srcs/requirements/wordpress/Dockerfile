@@ -1,15 +1,14 @@
 FROM debian:buster
 
-# && for cache busting
-RUN apt-get update && apt-get install -y \
-	php7.3-fpm \
-	php-mbstring \
-	php-mysql \
-	wget
+RUN apt update
+RUN apt install -y php7.3 php-mysqli php-fpm curl
 
-COPY ./tools/wp-config.php /tmp/
-COPY ./tools/init.sh /tmp/
+EXPOSE 9000
 
-# EXPOSE 9000
+COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d
+COPY ./tools /var/www/
 
-CMD ["sh", "/tmp/init.sh"]
+# static website
+COPY conf/index.html /var/www/index.html
+
+CMD bash /var/www/start.sh

@@ -17,4 +17,4 @@ and make your user sudoer with `sudo usermod -aG <username>`
 `$ sudo apt-get update`
 `$ sudo apt install openssh-server`
 Check activation with `systemctl status ssh`
-4. 
+4. About [LEMP](https://tech.osteel.me/posts/docker-for-local-web-development-part-1-a-basic-lemp-stack)

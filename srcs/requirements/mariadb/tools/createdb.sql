@@ -1,0 +1,5 @@
+CREATE DATABASE wordpress;
+CREATE USER 'hmeriann'@'%' IDENTIFIED BY '123123';
+GRANT ALL PRIVILEGES ON wordpress.* TO 'hmeriann'@'%';
+FLUSH PRIVILEGES;
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'root123123';

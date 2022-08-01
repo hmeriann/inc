@@ -1,15 +1,13 @@
-FROM		debian:buster
+FROM debian:buster
 
-RUN			apt-get update \
-			&& apt-get upgrade -y \
-			&& apt-get install -y \
-				mariadb-server \
-				php-mysql
+RUN apt update
+RUN apt install -y mariadb-server
 
-COPY		./tools/wp_database.sql /tmp/
-COPY		./conf/my.cnf /etc/mysql/
-COPY		./tools/init_db.sh /tmp/
+COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/
+COPY ./tools /var/www/
 
-CMD			["bash", "/tmp/init_db.sh"]
+EXPOSE 3306
 
-# EXPOSE		3306
+RUN service mysql start && mysql < /var/www/createdb.sql && rm -f /var/www/createdb.sql
+
+CMD /usr/bin/mysqld_safe
