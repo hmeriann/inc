@@ -9,7 +9,7 @@
 #### A Makefile is also required and must be located at the root of your directory. It must set up your entire application (i.e., it has to build the Docker images using docker-compose.yml).
 
 ## TO-DO
-1. Set up Virtual Machine by the [instruction](https://www.youtube.com/watch?v=j1FAZ0bUEvs) + [article](https://habr.com/ru/post/460173/)+ [medium](https://medium.com/swlh/wordpress-deployment-with-nginx-php-fpm-and-mariadb-using-docker-compose-55f59e5c1a) (to work with the project via VSCode6 you should connect to new host using cmd+shift+P following instructions; to connect to the clone of your VM, you should remove the content of the file '/Users/hmeriann/.ssh/known_hosts' and make new connection as described earlier)
+1. Set up Virtual Machine by the [instruction](https://www.youtube.com/watch?v=j1FAZ0bUEvs) + [article](https://habr.com/ru/post/460173/) + [medium](https://medium.com/swlh/wordpress-deployment-with-nginx-php-fpm-and-mariadb-using-docker-compose-55f59e5c1a) (to work with the project via VSCode6 you should connect to new host using cmd+shift+P following instructions; to connect to the clone of your VM, you should remove the content of the file '/Users/hmeriann/.ssh/known_hosts' and make new connection as described earlier)
 2. `$ sudo apt-get install vim`
 `$ sudo apt-get install make`
 and make your user sudoer with `sudo usermod -aG <username>`
