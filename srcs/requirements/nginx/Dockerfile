@@ -8,7 +8,7 @@ EXPOSE 443
 # RUN mkdir /var/www/wordpress && chown -R $USER:$USER /var/www/wordpress \
 # && touch /etc/nginx/sites-enabled/wordpress && chmod 777 /etc/nginx/sites-enabled/wordpress
 
-COPY ./conf/nginx.conf /etc/nginx/sites-enabled/default
+COPY ./conf/nginx.conf /etc/nginx/sites-available/default
 
 RUN mkdir /etc/nginx/ssl/
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
